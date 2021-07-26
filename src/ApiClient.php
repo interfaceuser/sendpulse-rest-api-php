@@ -499,6 +499,33 @@ class ApiClient implements ApiInterface
     }
 
     /**
+     * Get lisi of campaigns by address book id
+     * 
+     * @param $address_book_id
+     * @param $limit
+     * @param $offset
+     */
+    public function listCampaignsByAddressListID($address_book_id, $limit = null, $offset = null){
+        $data = array();
+
+        if (empty($address_book_id)) {
+            return $this->handleError('Empty book id');
+        }
+
+        $data['id'] = $address_book_id;
+
+        if (!empty($limit)) {
+            $data['limit'] = $limit;
+        }
+        if (!empty($offset)) {
+            $data['offset'] = $offset;
+        }
+        $requestResult = $this->sendRequest('addressbooks/' . $address_book_id . '/campaigns', 'GET', $data);
+
+        return $this->handleResult($requestResult);
+    }
+
+    /**
      * Get information about campaign
      *
      * @param $id

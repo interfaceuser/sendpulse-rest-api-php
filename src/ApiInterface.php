@@ -106,6 +106,15 @@ interface ApiInterface
     public function listCampaigns($limit = null, $offset = null);
 
     /**
+     * Get lisi of campaigns by address book id
+     * 
+     * @param $address_book_id
+     * @param $limit
+     * @param $offset
+     */
+    public function listCampaignsByAddressListID($address_book_id, $limit = null, $offset = null);
+
+    /**
      * Get information about campaign
      *
      * @param $id
